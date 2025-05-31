@@ -8,34 +8,40 @@ export const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Capa oscura con opacidad
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
-  formContainer: {
+  formCard: {
     width: '100%',
     maxWidth: 350,
+    backgroundColor: 'rgba(0,0,0,0.6)', // fondo oscuro semitransparente
+    borderRadius: 24,
+    paddingHorizontal: 24,
+    paddingVertical: 50,
   },
   title: {
-    fontSize: 32,
-    fontFamily: 'Roboto_700Bold',
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#fff',
     textAlign: 'center',
     marginBottom: 24,
-    color: colors.white,
   },
   input: {
     marginBottom: 16,
+    backgroundColor: 'transparent',
+
   },
   button: {
     marginTop: 12,
     borderRadius: 8,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.blue,
+
   },
-  loginLink: {
-    marginTop: 16,
-    color: colors.accent,
-    textAlign: 'center',
-    fontFamily: 'Roboto_400Regular',
+
+  buttonLabel: {
+    fontSize: 18,       
+    fontWeight: 'bold',  
+    color: '#fff',       
   },
 });

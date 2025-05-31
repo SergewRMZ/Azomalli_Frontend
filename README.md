@@ -7,3 +7,12 @@ El archivo principal que toma el proyecto es el index.js.
 
 - Fuentes
 Roboto
+
+- Librerías
+React Native Paper
+Expo Router
+Expo blur
+
+- Iconos
+Los iconos disponibles se encuentran en esta página, son los de React Native Paper.
+https://pictogrammers.com/library/mdi/

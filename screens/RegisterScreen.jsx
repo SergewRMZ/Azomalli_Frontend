@@ -3,6 +3,7 @@ import { Text, TextInput, Button } from 'react-native-paper';
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { styles } from '../styles/RegisterScreenStyles';
+import { colors } from '../styles/colors';
 
 export default function RegisterScreen() {
   const [name, setName] = useState('');
@@ -15,15 +16,13 @@ export default function RegisterScreen() {
 
   return (
     <ImageBackground
-      source={require('../assets/Fondo_Home.jpg')}
+      source={require('../assets/Fondo_Register.avif')}
       style={styles.background}
       resizeMode="cover"
     >
       <View style={styles.overlay}>
-        <View style={styles.formContainer}>
-          <Text variant="headlineMedium" style={styles.title}>
-            Crear cuenta
-          </Text>
+        <View style={styles.formCard}>
+          <Text style={styles.title}>Registrarse</Text>
 
           <TextInput
             label="Nombre"
@@ -31,8 +30,16 @@ export default function RegisterScreen() {
             onChangeText={setName}
             style={styles.input}
             mode="outlined"
+            left={<TextInput.Icon icon="account" color={'#fff'}/>}
+            textColor='#fff'
+            theme={{
+              colors: {
+                primary: colors.blue,
+                onSurfaceVariant: 'rgba(255,255,255,0.9)',
+                background: 'rgba(0,0,0,0.6)',
+              }
+            }}
           />
-
           <TextInput
             label="Correo electrónico"
             value={email}
@@ -41,8 +48,16 @@ export default function RegisterScreen() {
             mode="outlined"
             keyboardType="email-address"
             autoCapitalize="none"
+            left={<TextInput.Icon icon="email" color={'#fff'}/>}
+            textColor='#fff'
+            theme={{
+              colors: {
+                primary: colors.blue,
+                onSurfaceVariant: 'rgba(255,255,255,0.9)',
+                background: 'rgba(0,0,0,0.6)',
+              }
+            }}
           />
-
           <TextInput
             label="Contraseña"
             value={password}
@@ -50,15 +65,25 @@ export default function RegisterScreen() {
             style={styles.input}
             mode="outlined"
             secureTextEntry
+            left={<TextInput.Icon icon="lock" color={'#fff'}/>}
+            textColor='#fff'
+            theme={{
+              colors: {
+                primary: colors.blue,
+                onSurfaceVariant: 'rgba(255,255,255,0.9)',
+                background: 'rgba(0,0,0,0.6)',
+              }
+            }}
           />
 
-          <Button mode="contained" onPress={handleRegister} style={styles.button}>
-            Registrarse
+          <Button 
+            mode="contained" 
+            onPress={handleRegister} 
+            style={styles.button}
+            labelStyle={styles.buttonLabel}
+            >
+              Continuar
           </Button>
-
-          <Link href="/login">
-            <Text style={styles.loginLink}>¿Ya tienes cuenta? Inicia sesión</Text>
-          </Link>
         </View>
       </View>
     </ImageBackground>
