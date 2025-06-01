@@ -23,11 +23,21 @@ export default function HomeScreen() {
 
         <View style={styles.buttonContainer}>
           <Link href="/login" asChild>
-            <Button mode="contained" style={styles.button}>Iniciar sesión</Button>
+            <Button 
+              mode="contained" 
+              style={styles.buttonIniciarSesion}
+              labelStyle={styles.buttonIniciarSesion}
+            >Iniciar Sesión</Button>
           </Link>
 
           <Link href="/register" asChild>
-            <Button mode="outlined" style={styles.button}>Registrarse</Button>
+            <Button 
+              mode="outlined" 
+              style={styles.buttonRegistrar}
+              labelStyle={styles.buttonRegistrar}
+            >
+                Registrarse
+            </Button>
           </Link>
         </View>
       </View>

@@ -16,7 +16,7 @@ export default function RegisterScreen() {
 
   return (
     <ImageBackground
-      source={require('../assets/Fondo_Register.avif')}
+      source={require('../assets/Fondo_Register.jpg')}
       style={styles.background}
       resizeMode="cover"
     >
@@ -34,9 +34,9 @@ export default function RegisterScreen() {
             textColor='#fff'
             theme={{
               colors: {
-                primary: colors.blue,
+                primary: colors.greenLight,
                 onSurfaceVariant: 'rgba(255,255,255,0.9)',
-                background: 'rgba(0,0,0,0.6)',
+                background: 'rgba(0,0,0,1)',
               }
             }}
           />
@@ -52,9 +52,9 @@ export default function RegisterScreen() {
             textColor='#fff'
             theme={{
               colors: {
-                primary: colors.blue,
+                primary: colors.greenLight,
                 onSurfaceVariant: 'rgba(255,255,255,0.9)',
-                background: 'rgba(0,0,0,0.6)',
+                background: 'rgba(0,0,0,1)',
               }
             }}
           />
@@ -69,9 +69,9 @@ export default function RegisterScreen() {
             textColor='#fff'
             theme={{
               colors: {
-                primary: colors.blue,
+                primary: colors.greenLight,
                 onSurfaceVariant: 'rgba(255,255,255,0.9)',
-                background: 'rgba(0,0,0,0.6)',
+                background: 'rgba(0,0,0,1)',
               }
             }}
           />

@@ -35,7 +35,14 @@ export const styles = StyleSheet.create({
     gap: 12,
     width: '80%',
   },
-  button: {
+  buttonIniciarSesion: {
     borderRadius: 10,
+    backgroundColor: colors.primaryLight,
+    fontSize: 18,
+  },
+  buttonRegistrar: {
+    borderRadius: 10,
+    fontSize: 18,
+    color: colors.primaryLight
   },
 });
