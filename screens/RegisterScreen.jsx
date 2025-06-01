@@ -1,7 +1,7 @@
 import { View, ImageBackground } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
-import { Link } from 'expo-router';
 import { useState } from 'react';
+import CustomInput from '../components/CustomInput';
 import { styles } from '../styles/RegisterScreenStyles';
 import { colors } from '../styles/colors';
 
@@ -14,6 +14,12 @@ export default function RegisterScreen() {
     console.log('Registrando:', { name, email, password });
   };
 
+  const themeColors = {
+    primary: colors.greenLight,
+    onSurfaceVariant: 'rgba(255,255,255,0.9)',
+    background: 'rgba(0,0,0,1)',
+  };
+
   return (
     <ImageBackground
       source={require('../assets/Fondo_Register.jpg')}
@@ -24,56 +30,35 @@ export default function RegisterScreen() {
         <View style={styles.formCard}>
           <Text style={styles.title}>Registrarse</Text>
 
-          <TextInput
+          
+          <CustomInput
             label="Nombre"
             value={name}
             onChangeText={setName}
+            icon="account"
             style={styles.input}
-            mode="outlined"
-            left={<TextInput.Icon icon="account" color={'#fff'}/>}
-            textColor='#fff'
-            theme={{
-              colors: {
-                primary: colors.greenLight,
-                onSurfaceVariant: 'rgba(255,255,255,0.9)',
-                background: 'rgba(0,0,0,1)',
-              }
-            }}
+            themeColors={themeColors}
           />
-          <TextInput
+
+          <CustomInput
             label="Correo electrónico"
             value={email}
             onChangeText={setEmail}
-            style={styles.input}
-            mode="outlined"
+            icon="email"
             keyboardType="email-address"
             autoCapitalize="none"
-            left={<TextInput.Icon icon="email" color={'#fff'}/>}
-            textColor='#fff'
-            theme={{
-              colors: {
-                primary: colors.greenLight,
-                onSurfaceVariant: 'rgba(255,255,255,0.9)',
-                background: 'rgba(0,0,0,1)',
-              }
-            }}
+            style={styles.input}
+            themeColors={themeColors}
           />
-          <TextInput
+
+          <CustomInput
             label="Contraseña"
             value={password}
             onChangeText={setPassword}
-            style={styles.input}
-            mode="outlined"
+            icon="lock"
             secureTextEntry
-            left={<TextInput.Icon icon="lock" color={'#fff'}/>}
-            textColor='#fff'
-            theme={{
-              colors: {
-                primary: colors.greenLight,
-                onSurfaceVariant: 'rgba(255,255,255,0.9)',
-                background: 'rgba(0,0,0,1)',
-              }
-            }}
+            style={styles.input}
+            themeColors={themeColors}
           />
 
           <Button 
