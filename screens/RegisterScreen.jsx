@@ -1,6 +1,7 @@
-import { View, ImageBackground } from 'react-native';
-import { Text, TextInput, Button } from 'react-native-paper';
+import { View, ImageBackground, Alert } from 'react-native';
+import { Text, Button } from 'react-native-paper';
 import { useState } from 'react';
+import { useRouter } from 'expo-router'; // ✅ Para navegación programática
 import CustomInput from '../components/CustomInput';
 import { styles } from '../styles/RegisterScreenStyles';
 import { colors } from '../styles/colors';
@@ -9,9 +10,19 @@ export default function RegisterScreen() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const router = useRouter(); // ✅ Hook de navegación
 
   const handleRegister = () => {
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Las contraseñas no coinciden');
+      return;
+    }
+
     console.log('Registrando:', { name, email, password });
+    // ✅ Navegar a la pantalla de datos personales
+    router.push('/pedirDatos');
   };
 
   const themeColors = {
@@ -30,7 +41,6 @@ export default function RegisterScreen() {
         <View style={styles.formCard}>
           <Text style={styles.title}>Registrarse</Text>
 
-          
           <CustomInput
             label="Nombre"
             value={name}
@@ -61,13 +71,23 @@ export default function RegisterScreen() {
             themeColors={themeColors}
           />
 
-          <Button 
-            mode="contained" 
-            onPress={handleRegister} 
+          <CustomInput
+            label="Confirmar contraseña"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            icon="lock-check"
+            secureTextEntry
+            style={styles.input}
+            themeColors={themeColors}
+          />
+
+          <Button
+            mode="contained"
+            onPress={handleRegister}
             style={styles.button}
             labelStyle={styles.buttonLabel}
-            >
-              Continuar
+          >
+            Continuar
           </Button>
         </View>
       </View>
