@@ -4,7 +4,7 @@ import styles from '../styles/EncuestaStyles';
 
 import { useRouter } from 'expo-router';
 
-// Cuestionario 1
+// Cuestionario 1 (1 a 5)
 const questions = [
   "¿Con qué frecuencia sientes que tienes demasiadas tareas o responsabilidades que manejar al mismo tiempo?",
   "¿Qué tan a menudo te sientes incapaz de cumplir con tus compromisos académicos, laborales o personales?",
