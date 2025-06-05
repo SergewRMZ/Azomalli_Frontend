@@ -6,7 +6,7 @@ const { width } = Dimensions.get('window');
 export default StyleSheet.create({
   // Contenedor principal de la pantalla
   container: {
-    backgroundColor: '#EFEAE4', // Fondo claro azulado para un look fresco y tranquilo
+    backgroundColor: '#EFEAE4', // Fondo 
     paddingVertical: 30,         // Espaciado vertical alrededor del contenido
     paddingHorizontal: 20,       // Espaciado horizontal
     alignItems: 'center',        // Centrar horizontalmente los elementos hijos
@@ -23,7 +23,7 @@ export default StyleSheet.create({
   title: {
     fontSize: 24,                // Tamaño de letra grande para destacar
     fontWeight: 'bold',          // Texto en negrita
-    color: '#8DB986',            // Azul oscuro para contraste y legibilidad
+    color: '#fc7796',            
     letterSpacing: 1.2,          // Espaciado entre letras para un toque estilizado
     marginBottom: 6,             // Separación debajo del título
     textAlign: 'center',    // Asegura que se centre el texto
@@ -137,6 +137,63 @@ questionCard: {
   shadowRadius: 4,
   elevation: 3,
 },
+
+scaleTitle: {
+  fontSize: 18,
+  fontWeight: '600',
+  color: '#555',
+  marginTop: 15,
+  marginBottom: 8,
+  alignSelf: 'flex-start',
+},
+
+scaleContainer: {
+  width: '100%',
+  paddingLeft: 10,
+},
+
+scaleRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginBottom: 6,
+},
+
+scaleBullet: {
+  width: 28,
+  height: 28,
+  borderRadius: 14,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginRight: 10,
+  opacity: 0.9,
+},
+
+scaleBulletText: {
+  color: '#000',
+  fontWeight: 'bold',
+  fontSize: 14,
+},
+
+scaleLabel: {
+  fontSize: 16,
+  color: '#333',
+},
+
+errorHighlight: {
+  borderWidth: 2,
+  borderColor: 'red',
+  borderRadius: 10,
+  backgroundColor: '#ffe6e6',
+},
+
+
+// Colores coincidentes con las opciones de la encuesta
+color1: { backgroundColor: '#A8E6CF' },      // Verde pastel
+color2: { backgroundColor: '#DCEFCB' },      // Verde muy claro
+color3: { backgroundColor: '#FFF9B0' },      // Amarillo pastel
+color4: { backgroundColor: '#FFD3B6' },      // Naranja pastel
+color5: { backgroundColor: '#FFB6B9' },      // Rojo pastel
+
 
 
 });
