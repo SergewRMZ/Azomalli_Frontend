@@ -70,4 +70,17 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold', // Negrita
     fontSize: 16, // Tamaño medio
   },
+
+
+  imagePicker: {
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#EEE',
+  borderWidth: 1,
+  borderColor: '#CCC',
+  borderRadius: 10,
+  height: 140,
+  marginBottom: 16,
+}
+
 });

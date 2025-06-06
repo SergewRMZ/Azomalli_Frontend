@@ -1,22 +1,22 @@
-import { View, Text, TextInput, ScrollView, Pressable, Alert, Platform } from 'react-native';
+import { View, Text, TextInput, ScrollView, Pressable, Alert, Platform, Image, Switch } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { styles } from '../styles/DatosStyles';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import * as ImagePicker from 'expo-image-picker';
+
+import PerfilDefault from '../assets/Perfil.png';
 
 export default function DatosPersonales() {
-  const [nombre, setNombre] = useState('');
-  const [apellido1, setApellido1] = useState('');
-  const [apellido2, setApellido2] = useState('');
+  const [imagenUri, setImagenUri] = useState(null);
   const [fechaNacimiento, setFechaNacimiento] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [genero, setGenero] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [telEmergencia, setTelEmergencia] = useState('');
+  const [recibirNotificaciones, setRecibirNotificaciones] = useState(false);
 
   const router = useRouter();
-
   const generosValidos = ['Hombre', 'Mujer', 'No binario'];
 
   const calcularEdad = (fecha) => {
@@ -27,15 +27,31 @@ export default function DatosPersonales() {
     return mes < 0 || (mes === 0 && dia < 0) ? edad - 1 : edad;
   };
 
+  const seleccionarImagen = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permiso denegado', 'Se necesita permiso para acceder a la galería.');
+      return;
+    }
+
+    const resultado = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+      allowsEditing: true,
+    });
+
+    if (!resultado.canceled) {
+      setImagenUri(resultado.assets[0].uri);
+    }
+  };
+
   const guardarDatos = () => {
     const datos = {
-      nombre,
-      apellido1,
-      apellido2,
+      imagenUri: imagenUri || 'assets/Perfil.png',
       fechaNacimiento: fechaNacimiento?.toISOString().split('T')[0],
       genero,
       telefono,
-      telEmergencia
+      recibirNotificaciones,
     };
 
     const datosJSON = JSON.stringify(datos);
@@ -44,8 +60,8 @@ export default function DatosPersonales() {
   };
 
   const validarYContinuar = () => {
-    if (!nombre || !apellido1 || !apellido2 || !fechaNacimiento || !genero || !telefono || !telEmergencia) {
-      Alert.alert('Campos incompletos', 'Por favor llena todos los campos.');
+    if (!fechaNacimiento || !genero || !telefono) {
+      Alert.alert('Campos incompletos', 'Por favor llena todos los campos obligatorios.');
       return;
     }
 
@@ -61,8 +77,8 @@ export default function DatosPersonales() {
     }
 
     const regexTelefono = /^\d{10}$/;
-    if (!regexTelefono.test(telefono) || !regexTelefono.test(telEmergencia)) {
-      Alert.alert('Teléfono inválido', 'Los teléfonos deben tener exactamente 10 dígitos.');
+    if (!regexTelefono.test(telefono)) {
+      Alert.alert('Teléfono inválido', 'El teléfono debe tener exactamente 10 dígitos.');
       return;
     }
 
@@ -76,20 +92,17 @@ export default function DatosPersonales() {
       <Text style={styles.title}>AZOMALLI</Text>
 
       <View style={styles.formCard}>
-        <Text style={styles.label}>Nombre(s)</Text>
-        <TextInput style={styles.input} value={nombre} onChangeText={setNombre} />
-
-        <Text style={styles.label}>Primer Apellido</Text>
-        <TextInput style={styles.input} value={apellido1} onChangeText={setApellido1} />
-
-        <Text style={styles.label}>Segundo Apellido</Text>
-        <TextInput style={styles.input} value={apellido2} onChangeText={setApellido2} />
+        <Text style={styles.label}>Foto de usuario:</Text>
+        <Pressable onPress={seleccionarImagen} style={styles.imagePicker}>
+          {imagenUri ? (
+            <Image source={{ uri: imagenUri }} style={{ width: 120, height: 120, borderRadius: 60 }} />
+          ) : (
+            <Image source={PerfilDefault} style={{ width: 120, height: 120, borderRadius: 60 }} />
+          )}
+        </Pressable>
 
         <Text style={styles.label}>Fecha de Nacimiento:</Text>
-        <Pressable
-          onPress={() => setShowDatePicker(true)}
-          style={styles.input}
-        >
+        <Pressable onPress={() => setShowDatePicker(true)} style={styles.input}>
           <Text>
             {fechaNacimiento
               ? fechaNacimiento.toLocaleDateString()
@@ -102,7 +115,7 @@ export default function DatosPersonales() {
             value={fechaNacimiento || new Date(2000, 0, 1)}
             mode="date"
             display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-            maximumDate={new Date()} // no permite fechas futuras
+            maximumDate={new Date()}
             onChange={(event, selectedDate) => {
               setShowDatePicker(false);
               if (selectedDate) {
@@ -134,15 +147,14 @@ export default function DatosPersonales() {
           placeholder="10 dígitos"
         />
 
-        <Text style={styles.label}>Teléfono de un amigo o familiar:</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType="phone-pad"
-          value={telEmergencia}
-          onChangeText={setTelEmergencia}
-          maxLength={10}
-          placeholder="10 dígitos"
-        />
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+          <Text style={styles.label}>¿Deseas recibir notificaciones?</Text>
+          <Switch
+            value={recibirNotificaciones}
+            onValueChange={setRecibirNotificaciones}
+            style={{ marginLeft: 10 }}
+          />
+        </View>
 
         <Pressable style={styles.button} onPress={validarYContinuar}>
           <Text style={styles.buttonText}>Continuar</Text>
