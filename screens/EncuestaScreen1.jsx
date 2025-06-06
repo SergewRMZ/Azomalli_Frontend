@@ -37,9 +37,8 @@ const StressSurveySection = () => {
     setAnswers(newAnswers);
   };
 
-  // ✅ Esta función genera un JSON simple con timestamp e índices de pregunta
   const getSurveyResults = () => {
-     const responses = {};
+    const responses = {};
     answers.forEach((value, index) => {
       responses[`q${index + 1}`] = value;
     });
