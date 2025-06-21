@@ -42,12 +42,12 @@ export default function HomeScreen() {
       <FeatureCard
         imageSource={require('../assets/ejercicio.png')}
         text="Ejercicio del Día"
-        onPress={() => router.push('/ejercicio')}
+        onPress={() => router.push('/activity')}
       />
       <FeatureCard
         imageSource={require('../assets/retos.png')}
         text="Retos personales"
-        onPress={() => router.push('/retos')}
+        onPress={() => router.push('/challenge')}
       />
       <FeatureCard
         imageSource={require('../assets/alimentacion.png')}
@@ -57,7 +57,7 @@ export default function HomeScreen() {
       <FeatureCard
         imageSource={require('../assets/consejos.png')}
         text="Consejos"
-        onPress={() => router.push('/consejos')}
+        onPress={() => router.push('/dailyTip')}
       />
 
 <View style={styles.bottomMenu}>
