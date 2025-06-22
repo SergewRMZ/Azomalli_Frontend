@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 import styles from '../styles/terminosStyles';
+import { useRouter } from 'expo-router';
+
+const router = useRouter(); // Agrega esto arriba en tu componente
 
 export default function TermsScreen() {
   const [isChecked, setIsChecked] = useState(false);
@@ -13,6 +16,7 @@ export default function TermsScreen() {
   const handleFinish = () => {
     if (isChecked) {
       alert("Términos aceptados. Continuando...");
+      router.push('/pantallaPrincipal'); // Cambia este path
     } else {
       alert("Debes aceptar los términos para continuar.");
     }

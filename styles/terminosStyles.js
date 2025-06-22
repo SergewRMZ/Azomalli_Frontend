@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   // Contenedor principal de toda la pantalla
   container: {
     flex: 1,
-    backgroundColor: '#E8FAFF', // Color de fondo suave (azul muy claro)
+    backgroundColor: '#EFEAE4', // Color de fondo suave (azul muy claro)
     padding: 20,
     justifyContent: 'center',
   },
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#333', // Gris oscuro para buena legibilidad
     lineHeight: 20, // Espaciado entre líneas
+    textAlign: 'justify',
   },
 
   // Contenedor para el checkbox y su texto
