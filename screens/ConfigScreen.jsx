@@ -6,13 +6,11 @@ import {
   Pressable, 
   Switch, 
   SafeAreaView,
-  TouchableOpacity,
   ScrollView
 } from 'react-native';
 import { styles } from '../styles/ConfigStyles';
 import { useRouter } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function PerfilScreen() {
@@ -25,6 +23,13 @@ export default function PerfilScreen() {
   const [phone, setPhone] = useState('55-1234-5678');
   const [notifications, setNotifications] = useState(true);
   const [sound, setSound] = useState(true);
+
+  const handleSave = () => {
+    console.log('Datos guardados:', {
+      username, password, phone, notifications, sound
+    });
+    setEditMode(false);
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f0eae4' }}>
@@ -46,6 +51,7 @@ export default function PerfilScreen() {
         <View style={styles.card}>
           <Text style={styles.sectionLabel}>Datos</Text>
           <Text style={styles.sectionTitle}>Mi información</Text>
+
           <View style={styles.item}>
             <MaterialCommunityIcons name="account-outline" size={20} color="#333" />
             <View style={styles.itemText}>
@@ -61,6 +67,7 @@ export default function PerfilScreen() {
               )}
             </View>
           </View>
+
           <View style={styles.item}>
             <MaterialCommunityIcons name="eye-off-outline" size={20} color="#333" />
             <View style={styles.itemText}>
@@ -77,6 +84,7 @@ export default function PerfilScreen() {
               )}
             </View>
           </View>
+
           <View style={styles.item}>
             <MaterialCommunityIcons name="phone-outline" size={20} color="#333" />
             <View style={styles.itemText}>
@@ -93,6 +101,7 @@ export default function PerfilScreen() {
               )}
             </View>
           </View>
+
           <View style={styles.item}>
             <MaterialCommunityIcons name="bell-outline" size={20} color="#333" />
             <View style={styles.itemText}>
@@ -107,6 +116,7 @@ export default function PerfilScreen() {
               )}
             </View>
           </View>
+
           <View style={styles.item}>
             <MaterialCommunityIcons name="volume-high" size={20} color="#333" />
             <View style={styles.itemText}>
@@ -121,6 +131,12 @@ export default function PerfilScreen() {
               )}
             </View>
           </View>
+
+          {editMode && (
+            <Pressable onPress={handleSave} style={styles.saveButton}>
+              <Text style={styles.saveText}>Guardar</Text>
+            </Pressable>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

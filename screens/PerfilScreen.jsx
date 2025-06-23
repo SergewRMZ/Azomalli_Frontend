@@ -1,21 +1,43 @@
-import { 
-  View, 
-  Text, 
-  Image, 
-  Pressable, 
-  SafeAreaView, 
-  ScrollView, 
-  TouchableOpacity 
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Alert
 } from 'react-native';
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { styles } from '../styles/PerfilScreenStyles';
 import { useRouter } from 'expo-router';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function PerfilScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Cerrar sesión',
+      '¿Estás seguro de que deseas cerrar sesión?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Sí, salir',
+          style: 'destructive',
+          onPress: () => {
+            // Aquí va la lógica para cerrar sesión
+            // Por ejemplo: limpiar AsyncStorage, desloguear, etc.
+            // AsyncStorage.clear(); (si usas almacenamiento local)
+            router.replace('/login'); // Redirige a la pantalla de inicio de sesión
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f0e9' }}>
@@ -75,9 +97,24 @@ export default function PerfilScreen() {
           <Text style={styles.daysNumber}>245</Text>
           <Text style={styles.daysSubtext}>DÍAS USANDO LA APLICACIÓN</Text>
         </View>
-      </ScrollView>
 
-      
+        {/* Botón Cerrar sesión */}
+        <Pressable
+          onPress={handleLogout}
+          style={{
+            marginTop: 40,
+            backgroundColor: '#e53935',
+            paddingVertical: 12,
+            paddingHorizontal: 32,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>
+            Cerrar sesión
+          </Text>
+        </Pressable>
+
+      </ScrollView>
     </SafeAreaView>
   );
 }

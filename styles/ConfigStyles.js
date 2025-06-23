@@ -108,4 +108,19 @@ export const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center',
   },
+
+  saveButton: {
+  backgroundColor: '#95C47D',
+  paddingHorizontal: 18,
+  paddingVertical: 6,
+  borderRadius: 8,
+  alignSelf: 'center',  // Centra el botón horizontalmente
+
+},
+saveText: {
+  color: '#fff',
+  fontSize: 18,
+  textAlign: 'center',  // Centra el texto dentro del botón
+},
+
 });
