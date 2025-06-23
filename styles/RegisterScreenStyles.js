@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
   formCard: {
     width: '100%',
     maxWidth: 350,
-    // backgroundColor: 'rgba(0,0,0,0.6)', 
     borderRadius: 30,
     backgroundColor: '#000',
     borderRadius: 24,

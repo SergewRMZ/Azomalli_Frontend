@@ -77,7 +77,35 @@ export default function PerfilScreen() {
         </View>
       </ScrollView>
 
-      
+      {/* Barra inferior */}
+      <View style={[
+        styles.bottomMenu,
+        { marginBottom: insets.bottom }
+      ]}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/configuracion')}
+        >
+          <Icon name="cog" size={28} color="#fff" />
+          <Text style={styles.menuLabel}>Ajustes</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/perfil')}
+        >
+          <Icon name="account" size={28} color="#fff" />
+          <Text style={styles.menuLabel}>Perfil</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => router.push('/notificaciones')}
+        >
+          <Icon name="bell" size={28} color="#fff" />
+          <Text style={styles.menuLabel}>Notificaciones</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
