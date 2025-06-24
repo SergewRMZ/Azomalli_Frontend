@@ -58,7 +58,7 @@ export default function RegisterScreen() {
     const jsonData = storeUserData(name, email, password);
 
     // Navegar a la siguiente pantalla
-    router.push('/pedirDatos');
+    router.push('/pruebas');
   };
 
   const themeColors = {
