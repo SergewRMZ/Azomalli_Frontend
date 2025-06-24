@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,76 +8,73 @@ export const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 24,
   },
+
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
-    marginTop: 20,
+    gap: 20,
+    marginTop: 40,
     marginBottom: 20,
+    width: '100%',
   },
+
   backButton: {
     backgroundColor: 'transparent',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
   },
+
   backText: {
     color: '#000',
     fontSize: 18,
   },
-  editButton: {
-    backgroundColor: '#8DB986',
-    paddingHorizontal: 18,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  editText: {
+
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#fff',
-    fontSize: 18,
-  },
-  card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#8DB986',
+    paddingVertical: 12,
+    paddingHorizontal: 60,
     borderRadius: 12,
-    padding: 20,
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+
+  descriptionBox: {
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 12,
+    marginTop: 20,
+    marginBottom: 30,
     width: '100%',
     maxWidth: 360,
-    marginTop: 20,
-    alignSelf: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 3,
   },
-  sectionLabel: {
-    fontSize: 12,
-    color: '#666',
-    marginBottom: 4,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 16,
-    color: '#000',
-  },
-  item: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 20,
-    gap: 12,
-  },
-  itemText: {
-    flex: 1,
-  },
-  label: {
+
+  description: {
     fontSize: 14,
-    color: '#444',
+    textAlign: 'justify',
+    color: '#333',
   },
-  value: {
-    fontSize: 13,
-    color: '#777',
+
+  videoContainer: {
+    width: '100%',
+    maxWidth: 360,
+    aspectRatio: 16 / 9,
+    borderRadius: 12,
+    overflow: 'hidden',
+    alignSelf: 'center',
+    marginBottom: 50,
   },
+
+  thumbnail: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 12,
+  },
+
   bottomMenu: {
     position: 'absolute',
     left: 20,
@@ -96,12 +93,14 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
+
   menuItem: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 2,
   },
+
   menuLabel: {
     marginTop: 4,
     fontSize: 12,
