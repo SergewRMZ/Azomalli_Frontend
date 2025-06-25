@@ -75,7 +75,7 @@ export default function HomeScreen() {
 
       <View style={[
         styles.bottomMenuFixed, 
-        { marginBottom: insets.bottom > 0 ? insets.bottom : 16 }
+        { marginBottom: insetsKO.bottom > 0 ? insets.bottom : 16 }
       ]}>
         <TouchableOpacity
           style={styles.menuItem}
