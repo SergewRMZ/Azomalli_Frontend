@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from './colors';
 
 export const styles = StyleSheet.create({
   background: {
@@ -16,7 +17,7 @@ export const styles = StyleSheet.create({
   formCard: {
     width: '100%',
     maxWidth: 350,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderRadius: 24,
     paddingHorizontal: 24,
     paddingVertical: 50,
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#333',
+    color: colors.primaryLight,
     textAlign: 'center',
     marginBottom: 30,
   },
@@ -39,32 +40,27 @@ export const styles = StyleSheet.create({
     color: '#333',
   },
   input: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#999',
-    marginBottom: 20,
-    paddingVertical: 6,
-    fontSize: 16,
+    marginBottom: 16,
+    backgroundColor: 'transparent',
   },
   button: {
-  backgroundColor: '#8DB986',
-  paddingVertical: 12,
-  paddingHorizontal: 90,
-  borderRadius: 25,
-  alignItems: 'center',
-  marginTop: 10,
-  alignSelf: 'center',
-},
+    marginTop: 12,
+    borderRadius: 8,
+    backgroundColor: colors.primary,
+  },
   buttonText: {
     color: '#fff',
     fontSize: 16,
   },
+
+
   registerLink: {
     alignItems: 'center',
     marginTop: 20,
   },
   registerText: {
     fontSize: 13,
-    color: '#333',
+    color: colors.secondary,
   },
   registerBold: {
     fontWeight: 'bold',

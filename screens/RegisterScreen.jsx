@@ -14,9 +14,9 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState('serge+12E');
   const [confirmPassword, setConfirmPassword] = useState('serge+12E');
   const [errorRegister, setErrorRegister] = useState(false);
-  const [alertVisible, setAlertVisible] = useState(false); // Estado para controlar la visibilidad de la alerta
-  const [alertMessage, setAlertMessage] = useState(''); // Estado para el mensaje de la alerta
-  const [alertTitle, setAlertTitle] = useState(''); // Estado para el título de la alerta
+  const [alertVisible, setAlertVisible] = useState(false); 
+  const [alertMessage, setAlertMessage] = useState(''); 
+  const [alertTitle, setAlertTitle] = useState(''); 
   const router = useRouter();
 
   const isValidEmail = (email) => {

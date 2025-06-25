@@ -27,7 +27,12 @@ const CustomInput = ({
       keyboardType={keyboardType}
       autoCapitalize={autoCapitalize}
       textColor="#fff"
-      theme={{ colors: themeColors }}
+      theme={{ 
+        colors: {
+          ...themeColors,
+          primary: themeColors.outlineColor
+        },
+       }}
       {...rest}
     />
   );
