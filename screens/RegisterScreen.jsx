@@ -57,7 +57,8 @@ export default function RegisterScreen() {
     // Guardar y mostrar los datos en formato JSON
     const jsonData = storeUserData(name, email, password);
 
-    router.push('/pedirDatos');
+    // Navegar a la siguiente pantalla
+    router.push('/pruebas');
   };
 
   const themeColors = {

@@ -1,19 +1,17 @@
-import { Platform, Dimensions, StyleSheet } from 'react-native';
+// HomeScreen.styles.js
+import { StyleSheet } from 'react-native';
 
-const windowHeight = Dimensions.get('window').height;
-
+// Exporta un objeto de estilos creado con StyleSheet
 export default StyleSheet.create({
+  // Contenedor principal de la pantalla
   container: {
     flex: 1,
     backgroundColor: '#fbefdf',
-    padding: 16,
-    paddingBottom: Platform.select({
-      android: 120,
-      ios: 100
-    }),
     alignItems: 'center',
+    padding: 16,
   },
 
+  // Estilo del logo superior
   logo: {
     width: 120,
     height: 80,
@@ -21,6 +19,7 @@ export default StyleSheet.create({
     marginTop: 20,
   },
 
+  // Título de la app
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -28,6 +27,7 @@ export default StyleSheet.create({
     marginVertical: 10,
   },
 
+  // Contenedor del estado emocional
   emotionalContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
@@ -38,6 +38,7 @@ export default StyleSheet.create({
     width: '100%',
   },
 
+  // Imagen de estado emocional
   emotionalImage: {
     width: 60,
     height: 60,
@@ -45,22 +46,26 @@ export default StyleSheet.create({
     marginRight: 20,
   },
 
+  // Contenedor de los textos del estado emocional
   emotionalTextContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
 
+  // Etiqueta de estado emocional
   emotionalLabel: {
     fontSize: 14,
     color: '#244d2f',
   },
 
+  // Texto del estado emocional
   emotionalStatus: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#007BFF',
   },
 
+  // Contenedor del botón con imagen de fondo
   buttonCard: {
     width: '100%',
     height: 60,
@@ -69,16 +74,19 @@ export default StyleSheet.create({
     overflow: 'hidden',
   },
 
+  // Imagen de fondo del botón
   imageBackground: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
+  // Capa de opacidad sobre la imagen de fondo
   imageOverlay: {
     opacity: 0.6,
   },
 
+  // Texto dentro del botón con imagen de fondo
   buttonText: {
     fontSize: 16,
     color: '#244d2f',
@@ -86,6 +94,7 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
 
+  // Estilo del contenido del botón del menú inferior
   iconButtonContent: {
     flexDirection: 'column',
     alignItems: 'center',
@@ -94,30 +103,26 @@ export default StyleSheet.create({
     paddingHorizontal: 12,
   },
 
+  // Estilo del texto (label) del botón del menú inferior
   iconLabel: {
     fontSize: 14,
     color: '#ffffff',
   },
 
-  bottomMenuFixed: {
-    position: 'absolute',
-    left: 20,
-    right: 20,
-    bottom: 0,
+  // Contenedor del menú inferior
+  bottomMenu: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    width: '100%',
     backgroundColor: '#95C47D',
     borderRadius: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    marginTop: 30,
   },
 
+  // Estilo de cada ítem individual del menú
   menuItem: {
     flex: 1,
     alignItems: 'center',
@@ -125,10 +130,11 @@ export default StyleSheet.create({
     marginHorizontal: 2,
   },
 
+  // Etiqueta del menú inferior
   menuLabel: {
     marginTop: 4,
     fontSize: 12,
     color: '#ffffff',
     textAlign: 'center',
-  },
+  }
 });
