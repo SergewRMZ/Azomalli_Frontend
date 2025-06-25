@@ -1,17 +1,22 @@
-import { View, ImageBackground, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, ImageBackground } from 'react-native';
 import { Text, Button } from 'react-native-paper';
-import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import CustomInput from '../components/CustomInput';
 import { styles } from '../styles/RegisterScreenStyles';
 import { colors } from '../styles/colors';
+import { Usuario } from '../services/auth/Usuario';
+import CustomAlert from '../components/CustomAlert'; // Importamos el CustomAlert
 
 export default function RegisterScreen() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [username, setUsername] = useState('Sergew');
+  const [email, setEmail] = useState('serge.martinez@gmail.com');
+  const [password, setPassword] = useState('serge+12E');
+  const [confirmPassword, setConfirmPassword] = useState('serge+12E');
+  const [errorRegister, setErrorRegister] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false); // Estado para controlar la visibilidad de la alerta
+  const [alertMessage, setAlertMessage] = useState(''); // Estado para el mensaje de la alerta
+  const [alertTitle, setAlertTitle] = useState(''); // Estado para el título de la alerta
   const router = useRouter();
 
   const isValidEmail = (email) => {
@@ -19,46 +24,61 @@ export default function RegisterScreen() {
     return regex.test(email);
   };
 
-  const storeUserData = (name, email, password) => {
-    const userData = {
-      name,
-      email,
-      password,
-    };
-
-    const userDataJSON = JSON.stringify(userData);
-    console.log('Datos del usuario en JSON:', userDataJSON);
-
-    // Aquí podrías almacenar en AsyncStorage, enviarlo al backend, etc.
-    return userDataJSON;
+  const storeUserData = (username, email, password) => {
+    const userData = { username, email, password };
+    return userData;
   };
 
-  const handleRegister = () => {
-    if (!name || !email || !password || !confirmPassword) {
-      Alert.alert('Campos incompletos', 'Por favor, completa todos los campos.');
+  const handleRegister = async () => {
+    if (!username || !email || !password || !confirmPassword) {
+      setAlertTitle('Campos incompletos');
+      setAlertMessage('Por favor, completa todos los campos.');
+      setAlertVisible(true);
       return;
     }
 
     if (!isValidEmail(email)) {
-      Alert.alert('Correo inválido', 'Ingresa un correo electrónico válido.');
+      setAlertTitle('Correo inválido');
+      setAlertMessage('Ingresa un correo electrónico válido.');
+      setAlertVisible(true);
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert('Contraseña débil', 'La contraseña debe tener al menos 6 caracteres.');
+      setAlertTitle('Contraseña débil');
+      setAlertMessage('La contraseña debe tener al menos 6 caracteres.');
+      setAlertVisible(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Las contraseñas no coinciden.');
+      setAlertTitle('Error');
+      setAlertMessage('Las contraseñas no coinciden.');
+      setAlertVisible(true);
       return;
     }
 
-    // Guardar y mostrar los datos en formato JSON
-    const jsonData = storeUserData(name, email, password);
+    try {
+      const formData = storeUserData(username, email, password);
+      const data = await Usuario.register(formData);
+      setAlertTitle('Éxito')
+      setAlertMessage('Usuario registrado exitósamente');
+      setAlertVisible(true);
+      setErrorRegister(false);
+    } catch (error) {
+      setAlertTitle('Ha ocurrido un error');
+      setAlertMessage(error.data.error);
+      setAlertVisible(true);
+      setErrorRegister(true);
+      console.log(error.data[0]);
+    }
+  };
 
-    // Navegar a la siguiente pantalla
-    router.push('/pruebas');
+  const handleRedirect = () => {
+    if(!errorRegister) {
+      router.push('/login');
+      setAlertVisible(false); 
+    }
   };
 
   const themeColors = {
@@ -79,8 +99,8 @@ export default function RegisterScreen() {
 
           <CustomInput
             label="Usuario"
-            value={name}
-            onChangeText={setName}
+            value={username}
+            onChangeText={setUsername}
             icon="account"
             style={styles.input}
             themeColors={themeColors}
@@ -127,6 +147,17 @@ export default function RegisterScreen() {
           </Button>
         </View>
       </View>
+
+      {/* Usamos el componente CustomAlert */}
+      <CustomAlert
+        visible={alertVisible}
+        error={errorRegister}
+        onDismiss={() => setAlertVisible(false)}
+        title={alertTitle}
+        message={alertMessage}
+        buttonText="Aceptar"
+        onButtonPress={handleRedirect}
+      />
     </ImageBackground>
   );
 }
