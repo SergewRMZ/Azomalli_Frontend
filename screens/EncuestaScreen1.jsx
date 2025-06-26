@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import styles from '../styles/EncuestaStyles';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../context/AuthContext';
+import { Survey } from '../services/encuesta.service';
+import { Modal, TextInput } from 'react-native-paper';
 
 const questions = [
   "1.¿Con qué frecuencia sientes que no puedes controlar tus emociones?",
@@ -27,10 +30,11 @@ const questions = [
 ];
 
 const StressSurveySection = () => {
-  const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+  const [answers, setAnswers] = useState(Array(questions.length).fill(3));
   const [showErrors, setShowErrors] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(true);
   const router = useRouter();
-
+  const { token, password } = useAuth();
   const handleAnswer = (index, value) => {
     const newAnswers = [...answers];
     newAnswers[index] = value;
@@ -38,25 +42,35 @@ const StressSurveySection = () => {
   };
 
   const getSurveyResults = () => {
-    const responses = {};
-    answers.forEach((value, index) => {
-      responses[`q${index + 1}`] = value;
-    });
-    return {
-      responses,
-    };
+    // const responses = {};
+    // answers.forEach((value, index) => {
+    //   responses[`q${index + 1}`] = value;
+    // });
+    // return {
+    //   responses,
+    // };
+    return answers;
   };
 
-  const handleContinue = () => {
+  const handleContinue = async  () => {
     if (answers.includes(null)) {
       setShowErrors(true);
       Alert.alert("Responde todo antes de seguir.");
     } else {
       setShowErrors(false);
+      setIsModalVisible(true);
       const surveyData = getSurveyResults();
-      console.log("Encuesta JSON:", JSON.stringify(surveyData, null, 2));
-      Alert.alert("Sección completada", "Avanzando a la siguiente sección...");
-      router.push('/terminos');
+
+      try {
+        const formData = {
+          answers: surveyData, 
+          password
+        };
+        const response = await Survey.save(formData, token);
+        Alert.alert("Sección completada", response.message);
+      } catch (error) {
+        
+      }
     }
   };
 

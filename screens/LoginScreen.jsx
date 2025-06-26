@@ -51,7 +51,7 @@ export default function LoginScreen() {
       const formData = storeUserData(email, password);
       const data = await Usuario.login(formData);
       
-      await login(data);
+      await login(data.account, password, data.token);
       router.push('/pruebas');
       setErrorRegister(false);
     } catch (error) {

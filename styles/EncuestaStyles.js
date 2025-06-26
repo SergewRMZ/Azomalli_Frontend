@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { colors } from './colors';
 
 // Obtener ancho de la pantalla para usar en estilos responsivos
 const { width } = Dimensions.get('window');
@@ -112,7 +113,7 @@ red: { backgroundColor: '#FFB6B9' },         // Rojo pastel
 
   // Botón para continuar a la siguiente sección
   continueButton: {
-    backgroundColor: '#8DB986', 
+    backgroundColor: colors.primary,
     paddingVertical: 14,          
     paddingHorizontal: 50,       
     borderRadius: 30,            
@@ -123,7 +124,7 @@ red: { backgroundColor: '#FFB6B9' },         // Rojo pastel
   continueText: {
     fontSize: 18,               // Tamaño grande para visibilidad
     fontWeight: 'bold',         // Negrita para destacar
-    color: '#121212',           // Texto oscuro para contraste con botón claro
+    color: '#fff',           // Texto oscuro para contraste con botón claro
   },
 
 questionCard: {
@@ -186,6 +187,15 @@ errorHighlight: {
   backgroundColor: '#ffe6e6',
 },
 
+input: {
+  height: 50,
+  borderColor: '#ccc',
+  borderWidth: 1,
+  borderRadius: 8,
+  paddingHorizontal: 10,
+  marginBottom: 20, 
+},
+
 
 // Colores coincidentes con las opciones de la encuesta
 color1: { backgroundColor: '#A8E6CF' },      // Verde pastel
@@ -193,8 +203,5 @@ color2: { backgroundColor: '#DCEFCB' },      // Verde muy claro
 color3: { backgroundColor: '#FFF9B0' },      // Amarillo pastel
 color4: { backgroundColor: '#FFD3B6' },      // Naranja pastel
 color5: { backgroundColor: '#FFB6B9' },      // Rojo pastel
-
-
-
 });
 
