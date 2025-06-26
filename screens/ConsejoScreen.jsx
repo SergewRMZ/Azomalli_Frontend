@@ -3,6 +3,7 @@ import { styles } from '../styles/ConsejoScreenStyles';
 import { useRouter } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useEffect } from 'react';
 
 export default function ConsejoScreen() {
   const router = useRouter();

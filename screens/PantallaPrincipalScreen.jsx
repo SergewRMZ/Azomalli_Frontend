@@ -5,6 +5,7 @@ import { Button } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import styles from '../styles/principal';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors } from '../styles/colors';
 
 const FeatureCard = ({ imageSource, text, onPress }) => (
   <TouchableOpacity
@@ -36,12 +37,21 @@ export default function HomeScreen() {
           <Text style={styles.title}>AZOMALLI</Text>
         </View>
       </View>
-      <View style={styles.emotionalContainer}>
-        <Image source={require('../assets/estado_emocional.png')} style={styles.emotionalImage} />
-        <View style={styles.emotionalTextContainer}>
-          <Text style={styles.emotionalLabel}>Estado Emocional:</Text>
-          <Text style={styles.emotionalStatus}>Estrés alto</Text>
-        </View>
+      <View style={styles.emotionalTextContainer}>
+        <Text style={styles.emotionalLabel}>Consulta tu estado emocional</Text>
+
+        <TouchableOpacity
+          onPress={() => router.push('/estadisticas')}
+          style={{
+            backgroundColor: colors.primary,
+            paddingVertical: 6,
+            paddingHorizontal: 12,
+            borderRadius: 8,
+            marginTop: 8,
+          }}
+        >
+          <Text style={{ color: '#fff', fontWeight: 'bold' }}>Ver estadísticas</Text>
+        </TouchableOpacity>
       </View>
 
       <FeatureCard
@@ -87,13 +97,6 @@ export default function HomeScreen() {
           <Text style={styles.menuLabel}>Perfil</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => router.push('/notificaciones')}
-        >
-          <Icon name="bell" size={28} color="#fff" />
-          <Text style={styles.menuLabel}>Notificaciones</Text>
-        </TouchableOpacity>
       </View>
 
     </View>

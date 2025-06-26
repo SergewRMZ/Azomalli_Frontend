@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Linking, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/ActivityStyles';
+import { Usuario } from '../services/Usuario';
+import { useAuth } from '../context/AuthContext';
 
 export default function ActivityScreen() {
   const navigation = useNavigation();
   const [completed, setCompleted] = useState(false);
+  const [activities, setActivities] = useState([]);
 
+  const { token } = useAuth();
   const handleBack = () => {
     navigation.goBack();
   };
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const res = await Usuario.getActivites(token);
+        setActivities(res.activities);
+      } catch (error) {
+        console.error('Error fetching activities', error);
+        Alert.alert('Error', 'No se pudieron cargar las actividades.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActivities();
+  }, []);
+
 
   const handlePlayVideo = async () => {
     const videoUrl = 'https://www.youtube.com/watch?v=FU4OTllcOXM'; // Cambia este enlace si quieres otro video
@@ -23,6 +44,11 @@ export default function ActivityScreen() {
 
   const toggleCompleted = () => {
     setCompleted(!completed);
+  };
+
+  const getYoutubeId = (url) => {
+    const match = url.match(/v=([a-zA-Z0-9_-]+)/);
+    return match ? match[1] : '';
   };
 
   return (

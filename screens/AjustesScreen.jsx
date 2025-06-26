@@ -14,6 +14,7 @@ import { useRouter } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useAuth } from '../context/AuthContext';
 
 export default function AjustesScreen() {
   const router = useRouter();
@@ -25,7 +26,8 @@ export default function AjustesScreen() {
   const [phone, setPhone] = useState('55-1234-5678');
   const [notifications, setNotifications] = useState(true);
   const [sound, setSound] = useState(true);
-
+  const { user } = useAuth();
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f0eae4' }}>
       <ScrollView 
@@ -38,9 +40,7 @@ export default function AjustesScreen() {
           <Pressable onPress={() => router.back()} style={styles.backButton}>
             <Text style={styles.backText}>← Regresar</Text>
           </Pressable>
-          <Pressable onPress={() => setEditMode(!editMode)} style={styles.editButton}>
-            <Text style={styles.editText}>{editMode ? 'Cancelar' : 'Editar ✎'}</Text>
-          </Pressable>
+          
         </View>
 
         <View style={styles.card}>
@@ -74,22 +74,6 @@ export default function AjustesScreen() {
                 />
               ) : (
                 <Text style={styles.value}>{password}</Text>
-              )}
-            </View>
-          </View>
-          <View style={styles.item}>
-            <MaterialCommunityIcons name="phone-outline" size={20} color="#333" />
-            <View style={styles.itemText}>
-              <Text style={styles.label}>Teléfono</Text>
-              {editMode ? (
-                <TextInput
-                  style={styles.value}
-                  value={phone}
-                  onChangeText={setPhone}
-                  keyboardType="phone-pad"
-                />
-              ) : (
-                <Text style={styles.value}>{phone}</Text>
               )}
             </View>
           </View>

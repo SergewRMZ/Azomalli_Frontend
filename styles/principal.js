@@ -64,7 +64,7 @@ export default StyleSheet.create({
 
   // Etiqueta de estado emocional
   emotionalLabel: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#244d2f',
   },
 

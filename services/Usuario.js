@@ -33,10 +33,53 @@ export const Usuario = (() => {
     }
   }
 
+  const getActivites = async (token) => {
+    try {
+      const response = await api.get('/activity/emotion', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
+
+  const getStatistics = async (token) => {
+    try {
+      const response = await api.get('/emotion/getLastStatistics', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
+
+  const getDailyTips = async (token) => {
+    try {
+      const response = await api.get('/daily-tip', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
+
   return {
     register,
     login,
-    updateTermsAndSurvey
+    updateTermsAndSurvey, 
+    getActivites, getStatistics,
+    getDailyTips
   }
 })();
 
