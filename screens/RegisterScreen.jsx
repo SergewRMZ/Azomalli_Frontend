@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import CustomInput from '../components/CustomInput';
 import { styles } from '../styles/RegisterScreenStyles';
 import { colors } from '../styles/colors';
-import { Usuario } from '../services/auth/Usuario';
+import { Usuario } from '../services/Usuario';
 import CustomAlert from '../components/CustomAlert'; // Importamos el CustomAlert
 
 export default function RegisterScreen() {

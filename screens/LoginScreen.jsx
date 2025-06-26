@@ -5,11 +5,21 @@ import CustomInput from '../components/CustomInput';
 import { useState } from 'react';
 import { colors } from '../styles/colors';
 import { Button } from 'react-native-paper';
+import CustomAlert from '../components/CustomAlert';
+import { Usuario } from '../services/Usuario';
+import { useAuth } from '../context/AuthContext';
 
 export default function LoginScreen() {
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('serge.martinez.r@gmail.com');
+  const [password, setPassword] = useState('Serge+12');
+
+  const [errorRegister, setErrorRegister] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false); 
+  const [alertMessage, setAlertMessage] = useState(''); 
+  const [alertTitle, setAlertTitle] = useState(''); 
+
+  const { login } = useAuth();
   const router = useRouter();
 
   const isValidEmail = (email) => {
@@ -23,7 +33,7 @@ export default function LoginScreen() {
   };
 
   const handleLogin = async () => {
-    if (!username || !password) {
+    if (!email || !password) {
       setAlertTitle('Campos incompletos');
       setAlertMessage('Por favor, completa todos los campos.');
       setAlertVisible(true);
@@ -39,10 +49,10 @@ export default function LoginScreen() {
 
     try {
       const formData = storeUserData(email, password);
-      const data = await Usuario.register(formData);
-      setAlertTitle('Éxito')
-      setAlertMessage('Usuario registrado exitósamente');
-      setAlertVisible(true);
+      const data = await Usuario.login(formData);
+      
+      await login(data);
+      router.push('/pruebas');
       setErrorRegister(false);
     } catch (error) {
       setAlertTitle('Ha ocurrido un error');
@@ -107,6 +117,16 @@ export default function LoginScreen() {
           </View>
         </View>
       </View>
+
+       <CustomAlert
+        visible={alertVisible}
+        error={errorRegister}
+        onDismiss={() => setAlertVisible(false)}
+        title={alertTitle}
+        message={alertMessage}
+        buttonText="Aceptar"
+        onButtonPress={() => setAlertVisible(false)}
+      />
     </ImageBackground>
   );
 }
