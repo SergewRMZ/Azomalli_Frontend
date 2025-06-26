@@ -23,14 +23,19 @@ const FeatureCard = ({ imageSource, text, onPress }) => (
   </TouchableOpacity>
 );
 
+
 export default function HomeScreen() {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/logo.png')} style={styles.logo} />
-      <Text style={styles.title}>AZOMALLI</Text>
-
+      {/* <Image source={require('../assets/logo.png')} style={styles.logo} /> */}
+      <View style={styles.header}>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/logo.png')} style={styles.logo} />
+          <Text style={styles.title}>AZOMALLI</Text>
+        </View>
+      </View>
       <View style={styles.emotionalContainer}>
         <Image source={require('../assets/estado_emocional.png')} style={styles.emotionalImage} />
         <View style={styles.emotionalTextContainer}>
@@ -39,7 +44,11 @@ export default function HomeScreen() {
         </View>
       </View>
 
-
+      <FeatureCard
+        imageSource={require('../assets/emociones.jpg')}
+        text="Expresa tu estado de ánimo"
+        onPress={() => router.push('/animo')}
+      />
       <FeatureCard
         imageSource={require('../assets/ejercicio.png')}
         text="Ejercicio del Día"

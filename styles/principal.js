@@ -3,7 +3,17 @@ import { StyleSheet } from 'react-native';
 
 // Exporta un objeto de estilos creado con StyleSheet
 export default StyleSheet.create({
-  // Contenedor principal de la pantalla
+  
+  header: {
+    marginBottom: 25,
+    alignItems: 'center',
+    width: '100%',
+  },
+  logoContainer: {
+    flexDirection: 'row', 
+    alignItems: 'center',
+    justifyContent: 'center', 
+  },
   container: {
     flex: 1,
     backgroundColor: '#fbefdf',
@@ -13,15 +23,15 @@ export default StyleSheet.create({
 
   // Estilo del logo superior
   logo: {
-    width: 120,
+    width: 100,
     height: 80,
     resizeMode: 'contain',
-    marginTop: 20,
+    marginTop: 10,
   },
 
   // Título de la app
   title: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: 'bold',
     color: '#D9005A',
     marginVertical: 10,
@@ -88,9 +98,9 @@ export default StyleSheet.create({
 
   // Texto dentro del botón con imagen de fondo
   buttonText: {
-    fontSize: 16,
-    color: '#244d2f',
-    fontWeight: '600',
+    fontSize: 18,
+    color: '#252525',
+    fontWeight: '700',
     textAlign: 'center',
   },
 
