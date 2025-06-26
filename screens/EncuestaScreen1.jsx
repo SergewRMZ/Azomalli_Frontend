@@ -68,8 +68,10 @@ const StressSurveySection = () => {
         };
         const response = await Survey.save(formData, token);
         Alert.alert("Sección completada", response.message);
+        router.push('/terminos');
       } catch (error) {
-        
+        console.log(error.data.error);
+        Alert.alert("Ya realizaste esta encuesta", error.data.error);
       }
     }
   };

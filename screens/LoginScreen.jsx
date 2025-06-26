@@ -52,7 +52,13 @@ export default function LoginScreen() {
       const data = await Usuario.login(formData);
       
       await login(data.account, password, data.token);
-      router.push('/pruebas');
+
+      if(data.account.surveyCompleted && data.account.termsAccepted) {
+        router.push('/pantallaPrincipal');
+      }
+      else {
+        router.push('/encuesta1');
+      }
       setErrorRegister(false);
     } catch (error) {
       setAlertTitle('Ha ocurrido un error');

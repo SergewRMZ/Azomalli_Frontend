@@ -20,9 +20,23 @@ export const Usuario = (() => {
     }
   }
 
+  const updateTermsAndSurvey = async (formData, token) => {
+    try {
+      const response = await api.post('/auth/update-status', formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
+
   return {
     register,
-    login
+    login,
+    updateTermsAndSurvey
   }
 })();
 

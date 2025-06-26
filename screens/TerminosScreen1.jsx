@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import styles from '../styles/terminosStyles';
 import { useRouter } from 'expo-router';
+import { Usuario } from '../services/Usuario';
+import { useAuth } from '../context/AuthContext';
 
 const router = useRouter(); // Agrega esto arriba en tu componente
 
 export default function TermsScreen() {
   const [isChecked, setIsChecked] = useState(false);
+  const { token } = useAuth();
 
   const handleToggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     if (isChecked) {
-      alert("Términos aceptados. Continuando...");
-      router.push('/pantallaPrincipal'); // Cambia este path
+      try {
+        formData = {
+          surveyCompleted: true,
+          termsAccepted: true
+        }
+        const response = await Usuario.updateTermsAndSurvey(formData, token);
+        console.log(response); 
+        alert("Términos aceptados", "Recuerda que toda la información sensible que envíes se almacenará de forma cifrada");
+        router.push("/pantallaPrincipal");
+      } catch (error) {
+        Alert.alert("Error", "Debes aceptar los términos y condiciones para continuar.");
+      }
     } else {
       alert("Debes aceptar los términos para continuar.");
     }
